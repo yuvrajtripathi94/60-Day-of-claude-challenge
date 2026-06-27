@@ -1,68 +1,151 @@
-Good — this is important context, and it changes a few things in the report. Let me update it based on the actual current state:
+##Day-23 Build Your Customer & MVP Blueprint
 
-**What's NOT working right now:**
-- No database set up on server yet
-- Resume generation isn't working
-- Job fetching from multiple job sites isn't working
+# Customer & MVP Blueprint
 
-So right now the prototype is really just: basic backend code structure exists (the files you showed), but the core features (DB, resume gen, multi-site job fetch) aren't functional yet. That's a meaningfully earlier stage than "working prototype" — more like "backend skeleton in progress."
+## Executive Summary
 
-Let me fix the two sections this affects most:
+A unified platform for final-year Indian students that combines job search by company name, AI-powered resume-to-JD matching, skill-gap analysis, and ATS-optimized resume generation — eliminating the need to juggle multiple job portals and resume tools. A working backend prototype already exists; the next priority is validating demand with real users before scaling features.
 
----
+## Ideal Customer Profile (ICP)
 
-## Updated: Existing Validation
-*"Backend code structure started (Flask app with modules for resume parsing, job search, matching, AI generation, email). However, database is not yet deployed, resume generation is not yet functional, and multi-site job fetching is not yet working. Still pre-functional — no working end-to-end flow yet, no user testing."*
+| Attribute | Detail |
+|---|---|
+| Who | Final-year undergraduate/postgraduate students (Engineering, CS, MBA, Commerce) |
+| Geography | Tier 1–3 cities in India |
+| Stage | 6–12 months from graduation, actively job hunting or about to start |
+| Tech comfort | Smartphone-first, moderately tech-savvy, active on LinkedIn/Telegram/WhatsApp groups |
+| Budget | Low to zero willingness to pay upfront; price-sensitive |
+| Channel | College placement cells, WhatsApp/Telegram job groups, Instagram, campus ambassadors |
 
-## Updated: MVP Recommendation
+## Buyer Persona
 
-**Build First (in this order, since nothing fully works yet):**
-1. Database setup on server — this blocks everything else
-2. Resume upload + skill parsing (get this working end-to-end first)
-3. Match % against ONE job description (manual paste, not live fetching) — prove the core value before automating data collection
-4. ATS resume generation — fix this once parsing is reliable
+| Field | Detail |
+|---|---|
+| Name | "Rahul/Priya, the Final-Year Job Seeker" |
+| Age | 20–23 |
+| Education | B.Tech/B.E./MBA/B.Com final year |
+| Goals | Land a job before/at graduation, avoid backlog of rejections, look "industry-ready" |
+| Frustrations | Applying on 5+ portals, resume rejected silently by ATS, doesn't know which skills recruiters actually want |
+| Decision trigger | Sees friends getting interview calls, placement season starts, sees a "match %" feature demo |
+| Where they hang out | Placement WhatsApp groups, Naukri/LinkedIn, Instagram reels, YouTube career channels |
+
+## Top 10 Customer Pain Points
+
+| # | Pain Point |
+|---|---|
+| 1 | Searching the same company across multiple job sites repeatedly |
+| 2 | No clarity on whether they're "qualified enough" for a role |
+| 3 | Resume gets auto-rejected by ATS before human review |
+| 4 | Don't know which specific skills are missing for a target role |
+| 5 | Generic resumes don't match job-specific keywords |
+| 6 | Time wasted tailoring resumes manually for each application |
+| 7 | No feedback loop — silence after applying, no idea why rejected |
+| 8 | Limited awareness of which companies are currently hiring for their profile |
+| 9 | Anxiety/confidence gap due to lack of structured guidance |
+| 10 | Free tools are scattered (separate parser, separate tracker, separate builder) |
+
+## Customer Journey
+
+| Stage | Student Behavior | Your Opportunity |
+|---|---|---|
+| **Awareness** | Sees peers struggling with rejections; discovers tool via college group/Instagram | Share relatable "ATS rejected me" content, referral from placement cell |
+| **Consideration** | Tries uploading resume to see match % "for fun" or out of curiosity | Make first-use instant and free — no signup friction |
+| **Purchase** | Decides to use regularly during active placement season (free or low-cost) | Freemium model; paid tier for unlimited resume generations |
+| **Retention** | Returns weekly during placement season to check new company matches | Email/WhatsApp alerts for new matching jobs, gamified skill progress |
+
+## Key Customer Objections
+
+| Objection | Response Strategy |
+|---|---|
+| "Is my resume data safe?" | Clear privacy policy, no third-party sharing, local processing where possible |
+| "Will this actually get me a job?" | Position as a tool, not a guarantee — focus on match clarity & better resumes |
+| "I already use Naukri/LinkedIn" | Differentiate via skill-gap + auto resume generation, not just job listings |
+| "Free tools (Canva, ChatGPT) already do resumes" | Show job-specific match % + ATS scoring as the unique value, not just formatting |
+
+## Key Buying Triggers
+
+- Placement season starting at college
+- A friend gets shortlisted using a "match %" demo
+- Repeated silent rejections push them to seek a better resume
+- College placement cell officially recommends the tool
+
+## MVP Recommendation
+
+**Build First:**
+- Resume upload → skill extraction
+- Job description match % + missing skills display
+- Basic ATS-friendly resume generation
 
 **Do NOT Build Yet:**
-- Multi-job-site fetching/aggregation (this is the hardest, most fragile part — scraping multiple sites has reliability + legal/ToS risk). Start with **manual JD paste** instead of live fetching.
-- Company-wide search across sites
-- Paid plans, mobile app, notifications, scheduler automation
+- Company-wide job aggregation across many sources (complex, low differentiation early on)
+- Paid subscription/billing system
+- Mobile app (start with web)
+- Advanced AI mock interviews or career coaching
 
-**Success Metric (revised):** Can one student go from resume upload → match % → generated resume, end-to-end, without you manually fixing something? Get this working once, then test with real users.
+**Success Metrics:**
+- Number of resumes analyzed
+- Average match % improvement after resume regeneration
+- Weekly active users during placement season
+- % of users returning for a second job match
 
-## Updated: Top 5 Risks
+## MoSCoW Prioritization
+
+| Priority | Features |
+|---|---|
+| **Must Have** | Resume upload & parsing, JD match %, missing skills list, ATS resume generation |
+| **Should Have** | Email notifications for new matches, basic dashboard of applied jobs |
+| **Could Have** | Company-name based job aggregation, skill-improvement resources/links |
+| **Won't Have (for now)** | Paid plans, mobile app, AI mock interviews, placement cell B2B dashboard |
+
+## Pricing Hypothesis
+
+| Tier | Price | Includes |
+|---|---|---|
+| Free | ₹0 | Limited resume scans/month, basic match % |
+| Pro (later) | ₹99–₹199/month | Unlimited scans, resume generation, job alerts |
+| Campus License (later) | Custom | College-wide access via placement cell tie-up |
+
+*Hypothesis: Most final-year students won't pay individually; B2B2C via college placement cells is the likely long-term revenue path.*
+
+## Top 5 Risks
 
 | # | Risk |
 |---|---|
-| 1 | Core features (DB, resume gen, job fetch) are not yet functional — still pre-MVP |
-| 2 | Job-site fetching is technically risky (scraping, rate limits, ToS) — may need to drop this for v1 |
-| 3 | No real user validation yet |
-| 4 | Resume parsing/matching accuracy unknown until tested |
-| 5 | Risk of over-building (scheduler, email, AI gen) before the core loop even works once |
+| 1 | No real user validation yet — feature set may not match actual student priorities |
+| 2 | Resume parsing/matching accuracy may be unreliable across resume formats |
+| 3 | Low willingness to pay among students — monetization unclear |
+| 4 | Job-source/scraping dependency (legal/ToS risk if aggregating external job boards) |
+| 5 | Crowded market (Naukri, LinkedIn, Internshala, multiple AI resume tools) |
 
-## Updated: 30-Day MVP Plan
+## 30-Day MVP Plan
 
 | Week | Focus |
 |---|---|
-| 1 | Set up database on server; get resume upload + parsing working end-to-end |
-| 2 | Get match % working against a manually-pasted JD (skip live job fetching for now) |
-| 3 | Fix resume generation so it reliably outputs an ATS-friendly resume |
-| 4 | Test full flow with 5–10 real students; fix what breaks before adding job-site fetching |
+| 1 | Test prototype internally; fix core resume parsing/matching bugs |
+| 2 | Get 20–30 final-year students to test manually; collect feedback |
+| 3 | Refine match % accuracy and resume generation quality based on feedback |
+| 4 | Soft launch in 1–2 colleges via placement cell or student groups; track usage metrics |
 
-## Updated: Scores
+## Founder Action Sheet — Top 10 Next Actions
+
+1. Get 10–15 final-year students to test the existing prototype this week
+2. Fix any major bugs in resume parsing/matching found during testing
+3. Set up basic analytics (uploads, match %, resume downloads)
+4. Reach out to 1 college placement cell for a pilot
+5. Create a simple landing page explaining the value clearly
+6. Collect testimonials/feedback after first real usage
+7. Decide on a v1 scope freeze — stop adding features until validated
+8. Set up a WhatsApp/Telegram group for early users for feedback loop
+9. Track "match % improvement" as the core value metric
+10. Plan a soft launch announcement post for one campus
+
+## Scores (0–100)
 
 | Metric | Score | Reasoning |
 |---|---|---|
-| Customer Clarity | 75 | Niche is clear, but unvalidated |
-| Problem Severity | 80 | Real, widely felt pain |
-| PMF Potential | 50 | Unchanged — depends on user testing, not current build status |
-| MVP Readiness | **35** *(revised down from 70)* | Core features not yet functional; pre-MVP stage, not MVP stage |
+| Customer Clarity | 75 | Well-defined niche (final-year India students), but personas not yet validated with real users |
+| Problem Severity | 80 | Job search fragmentation + ATS rejection is a widely felt, real pain |
+| PMF Potential | 55 | Strong concept, but unproven willingness to pay and no user feedback yet |
+| MVP Readiness | 70 | Core technical build already exists, ahead of typical pre-validation stage |
 
-## Updated Final Verdict
 
-**🟡 Promising but Unvalidated**
-
-The idea and problem are strong, but the build is earlier-stage than initially described — database, resume generation, and job fetching are all not yet working. The smartest move right now is **not** to fix job-site fetching (the hardest, least essential part) — it's to get one core loop working end-to-end with a manually-pasted job description: upload resume → see match % → generate one resume. Prove that loop works and that students find it useful, before investing more time in scraping multiple job sites.
-
----
-
-Want me to regenerate the full clean report with these corrections, save it as a markdown file for your `day23.md`, or do you want to keep iterating on the technical scope first?
